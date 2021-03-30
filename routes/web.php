@@ -19,5 +19,7 @@ Route::get('/', function () {
 
 Route::get('/calculate', [\App\Http\Controllers\FirstController::class, 'calculator']);
 
-
+Route::get('/hello', function (){
+    return view('welcome');
+});
 
