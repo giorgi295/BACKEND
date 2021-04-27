@@ -24,6 +24,7 @@ class PostController extends Controller
     }
 
     public function save(Request $request){
+        $test=Post::all();
         $post=new Post($request->all());
         $post->save();
         return redirect()->back();
@@ -52,6 +53,10 @@ class PostController extends Controller
 
     }
 
+    public function postlists(){
+        $posts = Post::paginate(2);
+        return view("lists", compact('posts'));
+    }
 
 
 }

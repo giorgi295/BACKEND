@@ -25,6 +25,10 @@ Route::get('/hello', function (){
 
 Route::get('/', [\App\Http\Controllers\PostController::class, 'index'])->name('posts');
 
+Route::get('/lists', [\App\Http\Controllers\PostController::class, 'postlists'])->name('lists');
+
+
+
 
 Route::get('/post/{id}', [\App\Http\Controllers\PostController::class, 'post'])->name('post');
 

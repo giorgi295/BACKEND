@@ -1,3 +1,5 @@
+@extends('layouts.layout')
+@section('content')
 
 <div class="box box-primary">
     <div class="cox-header with-border">
@@ -21,3 +23,5 @@
         </div>
     </form>
 </div>
+
+@endsection

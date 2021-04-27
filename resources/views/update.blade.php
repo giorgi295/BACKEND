@@ -1,4 +1,5 @@
-
+@extends('layouts.layout')
+@section('content')
     <div class="box box-primary">
         <div class="cox-header with-border">
             <h3 class="box-title">edit post</h3>
@@ -16,12 +17,15 @@
                 </div>
             </div>
             <input type="hidden" name="_token" id="csrf_token" value="{{csrf_token()}}">
-            <div class="box-footer">title
+            <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Save</button>
             </div>
         </form>
     </div>
 
 
+
 </form>
 </div>
+
+@endsection
