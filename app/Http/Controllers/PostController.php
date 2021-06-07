@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\tag;
 use Illuminate\Http\Request;
+use function PHPUnit\Framework\isEmpty;
 
 class PostController extends Controller
 {
+
     public function index(){
         $posts=Post::all();
         return view('posts', compact('posts'));
@@ -24,9 +27,9 @@ class PostController extends Controller
     }
 
     public function save(Request $request){
-        $test=Post::all();
         $post=new Post($request->all());
         $post->save();
+        $post->tags()->attach($request->tags);
         return redirect()->back();
     }
 
@@ -39,8 +42,9 @@ class PostController extends Controller
     }
 
     public function update($id){
+        $tags=Tag::with('posts')->get();
         $post=Post::find($id);
-        return view('update', compact('post'));
+        return view('update', compact('post', 'tags'));
     }
 
     public function edit(Request $request, $id){
@@ -49,6 +53,11 @@ class PostController extends Controller
         $post->title=$request->title;
         $post->text=$request->text;
         $post->update();
+        if ( $post->tags()->detach($request->tags)==true){
+            $post->tags()->detach($request->tags);
+        }else{
+            $post->tags()->attach($request->tags);
+        }
         return redirect()->back();
 
     }

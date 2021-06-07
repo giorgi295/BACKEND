@@ -16,6 +16,15 @@
                 <input type="text" class="form-control" placeholder="text" name="text">
             </div>
 
+            <div class="form-group">
+                <label for="exampleInputEmail1">Post Tags</label>
+                <select name="tags[]" id="" multiple>
+                    @foreach($tags as $tag)
+                        <option value="{{$tag->id}}">{{$tag->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+
         </div>
         <input type="hidden" name="_token" id="csrf_token" value="{{csrf_token()}}">
         <div class="box-footer">
